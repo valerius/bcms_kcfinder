@@ -55,6 +55,11 @@ module BcmsKcfinder
     end
 
 
+    def thumb
+      #raise "Error: The thumbnail comand '#{params[:command]}' is not implemented yet."
+      @attachment = Cms::Attachment.find_live_by_file_path(params[:path])
+      send_file @attachment.path(:thumb)
+    end
 
     def command
       raise "Error: The command '#{params[:command]}' is not implemented yet."
@@ -103,7 +108,7 @@ module BcmsKcfinder
             writeable: true,
             bigIcon: true,
             smallIcon: true,
-            thumb: false,
+            thumb: true,
             smallThumb: false,
             cms_id: file.id
         }

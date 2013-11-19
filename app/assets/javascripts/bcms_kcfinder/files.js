@@ -78,7 +78,7 @@ browser.showFiles = function(callBack, selected) {
                 if (i == browser.files.length - 1) html += '</table>';
             } else {
                 if (file.thumb)
-                    var icon = browser.baseGetData('thumb') + '&file=' + encodeURIComponent(file.name) + '&dir=' + encodeURIComponent(browser.dir) + '&stamp=' + stamp;
+                    var icon = browser.baseGetData('thumb') + '&file=' + encodeURIComponent(file.name) + '&dir=' + encodeURIComponent(browser.dir) +'&path='+file.path+ '&stamp=' + stamp;
                 else if (file.smallThumb) {
                     var icon = browser.uploadURL + '/' + browser.dir + '/' + file.name;
                     icon = _.escapeDirs(icon).replace(/\'/g, "%27");
