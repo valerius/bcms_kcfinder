@@ -222,8 +222,22 @@ span.brace.opened, span.brace.closed {
 }
 
 #dialog img {
-    cursor: pointer
+    cursor: pointer  ;
+    width: 500px;   /* TODO: Hack to ensure that viewing isn't 100% of window.*/
 }
+
+/***********************
+Hack to view thumbnails so that the dilaog lays out properly. Should be re-worked  by a CSS master.
+***********/
+#dialog {
+    top: 10px;
+    position: absolute;
+}
+#dialog div.slideshow {
+    position: relative;
+}
+/********************************/
+
 
 #resizer {
     position: absolute;

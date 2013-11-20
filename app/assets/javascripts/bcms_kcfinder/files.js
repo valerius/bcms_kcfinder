@@ -365,7 +365,7 @@ browser.menuFile = function(file, e) {
                             opacity: '',
                             filter: ''
                         });
-                        browser.alert(browser.label("Unknown error."));
+                        browser.alert(browser.label("Unknown error [368]."));
                     }
                 });
             };
@@ -498,7 +498,7 @@ browser.menuFile = function(file, e) {
                         },
                         error: function() {
                             if (callBack) callBack();
-                            browser.alert(browser.label("Unknown error."));
+                            browser.alert(browser.label("Unknown error 3."));
                         }
                     });
                 }
@@ -511,7 +511,8 @@ browser.menuFile = function(file, e) {
         browser.hideDialog();
         var ts = new Date().getTime();
         var showImage = function(data) {
-            url = _.escapeDirs(browser.uploadURL + '/' + browser.dir + '/' + data.name) + '?ts=' + ts,
+            //url = _.escapeDirs(browser.uploadURL + '/' + browser.dir + '/' + data.name) + '?ts=' + ts,
+            url = _.escapeDirs( data.path) + '?ts=' + ts;
             $('#loading').html(browser.label("Loading image..."));
             $('#loading').css('display', 'inline');
             var img = new Image();
@@ -519,7 +520,7 @@ browser.menuFile = function(file, e) {
             img.onerror = function() {
                 browser.lock = false;
                 $('#loading').css('display', 'none');
-                browser.alert(browser.label("Unknown error."));
+                browser.alert(browser.label("Unknown error 1."));
                 $(document).unbind('keydown');
                 $(document).keydown(function(e) {
                     return !browser.selectAll(e);
@@ -542,7 +543,8 @@ browser.menuFile = function(file, e) {
                     var o_h = $('#dialog').outerHeight();
                     var f_w = $(window).width() - 30;
                     var f_h = $(window).height() - 30;
-                    if ((o_w > f_w) || (o_h > f_h)) {
+                       // alert("o_w="+o_w+" o_h="+o_h+" f_w="+f_w+" f_h="+f_h);
+                     /*   if ((o_w > f_w) || (o_h > f_h)) {
                         if ((f_w / f_h) > (o_w / o_h))
                             f_w = parseInt((o_w * f_h) / o_h);
                         else if ((f_w / f_h) < (o_w / o_h))
@@ -551,7 +553,9 @@ browser.menuFile = function(file, e) {
                             width: f_w,
                             height: f_h
                         });
-                    }
+                        } */
+
+
                     $('#dialog').unbind('click');
                     $('#dialog').click(function(e) {
                         browser.hideDialog();
@@ -564,6 +568,7 @@ browser.menuFile = function(file, e) {
                         }
                     });
                     browser.showDialog();
+                    $('#dialog').css('top',"50px");    //TODO: This is kind of a hack, as showDialog() does auto adjusting be doesn't look right to me. Wherefore, we override the top here...
                     var images = [];
                     $.each(browser.files, function(i, file) {
                         if (file.thumb || file.smallThumb)

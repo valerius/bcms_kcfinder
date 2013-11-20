@@ -322,7 +322,7 @@ browser.refresh = function(selected) {
         },
         error: function() {
             $('#files > div').css({opacity:'', filter:''});
-            $('#files').html(browser.label("Unknown error."));
+            $('#files').html(browser.label("Unknown error [325]."));
         }
     });
 };

@@ -242,7 +242,7 @@ browser.fileNameDialog = function(e, post, inputName, inputValue, url, labels, c
                 browser.hideDialog();
             },
             error: function() {
-                browser.alert(browser.label("Unknown error."), false);
+                browser.alert(browser.label("Unknown error [245]."), false);
             }
         });
         return false;

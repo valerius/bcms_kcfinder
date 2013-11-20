@@ -149,7 +149,7 @@ browser.expandDir = function(dir) {
                     },
                     error: function() {
                         $('#loadingDirs').detach();
-                        browser.alert(browser.label("Unknown error."));
+                        browser.alert(browser.label("Unknown error [152]."));
                     }
                 });
             });
@@ -185,7 +185,7 @@ browser.changeDir = function(dir) {
                 browser.statusDir();
             },
             error: function() {
-                $('#files').html(browser.label("Unknown error."));
+                $('#files').html(browser.label("Unknown error [188]."));
             }
         });
     }
@@ -296,7 +296,7 @@ browser.menuDir = function(dir, e) {
                 errDot: "Folder name shouldn't begins with '.'"
             }, function(dt) {
                 if (!dt.name) {
-                    browser.alert(browser.label("Unknown error."));
+                    browser.alert(browser.label("Unknown error [299]."));
                     return;
                 }
                 var currentDir = (data.path == browser.dir);
@@ -345,7 +345,7 @@ browser.menuDir = function(dir, e) {
                     },
                     error: function() {
                         if (callBack) callBack();
-                        browser.alert(browser.label("Unknown error."));
+                        browser.alert(browser.label("Unknown error [348]."));
                     }
                 });
             }

@@ -119,7 +119,7 @@ module BcmsKcfinder
         {
             name: child.name,
             readable:  BcmsKcfinder.config.dir_readable,
-            writable:  BcmsKcfinder.config.dir_writeable,
+            writable:  BcmsKcfinder.config.dir_writable,
             removable:  BcmsKcfinder.config.dir_removable,
             hasDirs: !child.child_sections.empty?,
             current: false,

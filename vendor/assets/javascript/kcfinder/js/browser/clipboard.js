@@ -172,7 +172,7 @@ browser.copyClipboard = function(dir) {
                     opacity: '',
                     filter: ''
                 });
-                browser.alert(browser.label("Unknown error."));
+                browser.alert(browser.label("Unknown error [175]."));
             }
         });
     };
@@ -221,7 +221,7 @@ browser.moveClipboard = function(dir) {
                     opacity: '',
                     filter: ''
                 });
-                browser.alert(browser.label("Unknown error."));
+                browser.alert(browser.label("Unknown error [224]."));
             }
         });
     };
@@ -268,7 +268,7 @@ browser.deleteClipboard = function() {
                     opacity: '',
                     filter:''
                 });
-                browser.alert(browser.label("Unknown error."));
+                browser.alert(browser.label("Unknown error [271]."));
             }
         });
     };

@@ -119,8 +119,8 @@ browser.initContent = function() {
             browser.orderFiles();
         },
         error: function() {
-            $('div#folders').html(browser.label("Unknown error."));
-            $('div#files').html(browser.label("Unknown error."));
+            $('div#folders').html(browser.label("Unknown error [122]."));
+            $('div#files').html(browser.label("Unknown error [123]."));
         }
     });
 };
