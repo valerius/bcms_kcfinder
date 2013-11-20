@@ -2,7 +2,7 @@ module BcmsKcfinder
   class BrowseController < Cms::BaseController
 
     # This API is mostly JSON, so CSRF shouldn't be an issue.
-    protect_from_forgery :except => :upload
+    protect_from_forgery :except => [:download,:upload]
     
     layout 'bcms_kcfinder/application'
     before_filter :set_default_type
@@ -55,6 +55,13 @@ module BcmsKcfinder
     end
 
 
+    def download
+      #raise "Error: The thumbnail comand '#{params[:command]}' is not implemented yet."
+      file_path = params[:path]
+      @attachment = Cms::Attachment.find_live_by_file_path(params[:path])
+      send_file @attachment.path , :filename=>File.basename(file_path)
+
+    end
     def thumb
       #raise "Error: The thumbnail comand '#{params[:command]}' is not implemented yet."
       @attachment = Cms::Attachment.find_live_by_file_path(params[:path])

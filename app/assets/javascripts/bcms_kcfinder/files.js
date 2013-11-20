@@ -436,10 +436,12 @@ browser.menuFile = function(file, e) {
             var html = '<form id="downloadForm" method="post" action="' + browser.baseGetData('download') + '">' +
                 '<input type="hidden" name="dir" />' +
                 '<input type="hidden" name="file" />' +
+                '<input type="hidden" name="path" />' +
             '</form>';
             $('#dialog').html(html);
             $('#downloadForm input').get(0).value = browser.dir;
             $('#downloadForm input').get(1).value = data.name;
+            $('#downloadForm input').get(2).value = data.path;
             $('#downloadForm').submit();
             return false;
         });
