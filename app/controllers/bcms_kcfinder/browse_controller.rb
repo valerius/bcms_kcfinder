@@ -2,7 +2,7 @@ module BcmsKcfinder
   class BrowseController < Cms::BaseController
 
     # This API is mostly JSON, so CSRF shouldn't be an issue.
-    protect_from_forgery :except => :upload
+    protect_from_forgery :except => [:download,:upload]
     
     layout 'bcms_kcfinder/application'
     before_filter :set_default_type
@@ -55,6 +55,18 @@ module BcmsKcfinder
     end
 
 
+    def download
+      #raise "Error: The thumbnail comand '#{params[:command]}' is not implemented yet."
+      file_path = params[:path]
+      @attachment = Cms::Attachment.find_live_by_file_path(params[:path])
+      send_file @attachment.path , :filename=>File.basename(file_path)
+
+    end
+    def thumb
+      #raise "Error: The thumbnail comand '#{params[:command]}' is not implemented yet."
+      @attachment = Cms::Attachment.find_live_by_file_path(params[:path])
+      send_file @attachment.path(:thumb)
+    end
 
     def command
       raise "Error: The command '#{params[:command]}' is not implemented yet."
@@ -94,17 +106,16 @@ module BcmsKcfinder
             # Handle having a possibly 'null' data_file_name, which might happen if upgrades aren't successful.
             # Otherwise, the UI can't sort items correctly
             name: file.name ? file.name : "",
-            
             size: file.size_in_bytes,
             path: file.link_to_path,
             mtime: file.updated_at.to_i,
             date: file.created_at.strftime("%m/%d/%Y %I:%M %p"),
-            readable: true,
-            writeable: true,
-            bigIcon: true,
-            smallIcon: true,
-            thumb: false,
-            smallThumb: false,
+            readable: BcmsKcfinder.config.readable,
+            writeable:  BcmsKcfinder.config.writeable,
+            bigIcon: BcmsKcfinder.config.bigIcon,
+            smallIcon: BcmsKcfinder.config.smallIcon,
+            thumb: BcmsKcfinder.config.thumbnail,
+            smallThumb: BcmsKcfinder.config.smallThumb,
             cms_id: file.id
         }
       end
@@ -114,9 +125,9 @@ module BcmsKcfinder
       section.sections.map do |child|
         {
             name: child.name,
-            readable: true,
-            writable: true,
-            removable: true,
+            readable:  BcmsKcfinder.config.dir_readable,
+            writable:  BcmsKcfinder.config.dir_writable,
+            removable:  BcmsKcfinder.config.dir_removable,
             hasDirs: !child.child_sections.empty?,
             current: false,
             dirs: child_sections_to_dirs(child)
